@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image for Classification</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        {% if prediction %}
+            <div class="alert alert-success mt-3" role="alert">
+                <strong>Prediction:</strong> {{ prediction }}
+            </div>
+        {% elif error %}
+            <div class="alert alert-danger mt-3" role="alert">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
