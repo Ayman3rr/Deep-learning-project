@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generation Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Question Generation Model</h1>
+        <form id="inputForm">
+            <label for="input_text">Enter some text:</label>
+            <textarea id="input_text" name="input_text" rows="4" cols="50"></textarea><br>
+            <button type="submit">Generate Text</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#inputForm').on('submit', function(event) {
+                event.preventDefault();  // منع إعادة تحميل الصفحة
+
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    data: {
+                        input_text: $('#input_text').val()
+                    },
+                    success: function(response) {
+                        $('#result').html('<h3>Generated Question:</h3><p>' + response.output_text + '</p>');
+                    },
+                    error: function() {
+                        $('#result').html('<p>Error generating text. Please try again.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
