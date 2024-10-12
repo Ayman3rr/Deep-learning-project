@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترجمة النصوص</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>مترجم النصوص</h1>
+        <form method="POST">
+            <textarea name="input_text" rows="4" placeholder="أدخل النص هنا..." required></textarea>
+            <button type="submit">ترجم</button>
+        </form>
+        {% if translation %}
+            <div class="translation">
+                <h2>الترجمة:</h2>
+                <p>{{ translation }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
